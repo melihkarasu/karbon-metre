@@ -1,0 +1,5 @@
+.eco-grade-A-plus, .eco-grade-A { color: #10b981; border-color: #10b981; background: rgba(16, 185, 129, 0.15); }
+        .eco-grade-B { color: #34d399; border-color: #34d399; background: rgba(52, 211, 153, 0.15); }
+        .eco-grade-C { color: #facc15; border-color: #facc15; background: rgba(250, 204, 21, 0.15); }
+        .eco-grade-D { color: #fb923c; border-color: #fb923c; background: rgba(251, 146, 60, 0.15); }
+        .eco-grade-E, .eco-grade-F { color: #f87171; border-color: #f87171; background: rgba(248, 113, 113, 0.15); }
