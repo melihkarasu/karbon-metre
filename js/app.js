@@ -47,6 +47,12 @@ var STORAGE_KEY = '***';
             cleanerThan: 82, 
             co2Grams: 0.245, 
             cleanHost: 'github.com',
+            isGreen: true,
+            hostingProvider: 'GreenHost',
+            durationMs: 142,
+            compressed: true,
+            encoding: 'gzip',
+            bytes: 562000,
             details: { 
                 energy: '0.12kg', 
                 hosting: '0.08kg', 
@@ -98,7 +104,7 @@ var STORAGE_KEY = '***';
           // Eko Notu (A+, A, B, C...)
           const gradeBadge = document.getElementById('res-grade-badge');
           gradeBadge.innerText = data.grade;
-          gradeBadge.className = `w-24 h-24 rounded-full border-4 flex items-center justify-center font-black text-4xl shadow-inner mb-3 eco-grade-${data.grade.replace('+', '-plus')}`;
+          gradeBadge.className = `w-24 h-24 rounded-full border-4 flex items-center justify-center font-black text-4xl shadow-inner mb-3 eco-grade-${(data.grade || "").replace('+', '-plus')}`;
 
           document.getElementById('res-cleaner-pct').innerText = `Web sayfalarının %${data.cleanerThan}'inden daha temiz`;
           document.getElementById('res-co2-grams').innerText = data.co2Grams.toFixed(3);
@@ -223,7 +229,7 @@ var STORAGE_KEY = '***';
                   <span>${item.date}</span>
                 </div>
               </div>
-              <span class="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-black shrink-0 eco-grade-${item.grade.replace('+', '-plus')}">
+              <span class="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-black shrink-0 eco-grade-${(item.grade || "").replace('+', '-plus')}">
                 ${item.grade}
               </span>
             </div>
