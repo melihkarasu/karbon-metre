@@ -1,19 +1,5 @@
-/* Web Karbon Ayak İzi - Standalone CSS */
-
-:root {
-  --mistral-ink: #1c1917;
-  --mistral-slate: #78716c;
-  --mistral-stone: #a8a29e;
-  --mistral-hairline: #e7e5e4;
-  --mistral-cream: #f5f5f4;
-  --mistral-beige-deep: #d6d3d1;
-  --mistral-orange: #fa520f;
-  --mistral-orange-deep: #e04400;
-  --mistral-canvas: #0f172a;
-}
-
 .eco-grade-A-plus, .eco-grade-A { color: #10b981; border-color: #10b981; background: rgba(16, 185, 129, 0.15); }
-.eco-grade-B { color: #34d399; border-color: #34d399; background: rgba(52, 211, 153, 0.15); }
-.eco-grade-C { color: #facc15; border-color: #facc15; background: rgba(250, 204, 21, 0.15); }
-.eco-grade-D { color: #fb923c; border-color: #fb923c; background: rgba(251, 146, 60, 0.15); }
-.eco-grade-E, .eco-grade-F { color: #f87171; border-color: #f87171; background: rgba(248, 113, 113, 0.15); }
+        .eco-grade-B { color: #34d399; border-color: #34d399; background: rgba(52, 211, 153, 0.15); }
+        .eco-grade-C { color: #facc15; border-color: #facc15; background: rgba(250, 204, 21, 0.15); }
+        .eco-grade-D { color: #fb923c; border-color: #fb923c; background: rgba(251, 146, 60, 0.15); }
+        .eco-grade-E, .eco-grade-F { color: #f87171; border-color: #f87171; background: rgba(248, 113, 113, 0.15); }
