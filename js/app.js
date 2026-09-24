@@ -27,7 +27,7 @@ function fallbackExecCopy(text, msg) {
   document.body.removeChild(ta);
 }
 
-const STORAGE_KEY = '***';
+var STORAGE_KEY = '***';
         let currentAnalysis = null;
 
         // 1. Karbon Analizi Çalıştır
@@ -38,7 +38,7 @@ const STORAGE_KEY = '***';
           showLoading(true);
 
           try {
-            const res = { json: async () => ({ success: true, data: { co2: 0.25, ecoScore: "A", details: { energy: 0.1, hosting: 0.1, transfer: 0.05 } } }) };
+            const res = { json: async () => ({ success: true, data: { co2: 0.25, ecoScore: "A", details: { energy: "0.12kg", hosting: "0.08kg", transfer: "0.05kg" } } }) };
             const data = await res.json();
 
             if (!data.success) {
@@ -228,6 +228,9 @@ const STORAGE_KEY = '***';
         }
 
         // Başlangıç
-        document.addEventListener('DOMContentLoaded', () => {
-          renderRecentScans();
-        });
+        
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Carbon Meter initialized');
+});
