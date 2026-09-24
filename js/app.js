@@ -1,4 +1,7 @@
-// Web Karbon Ayak İzi & Eko-Skor - Standalone Client Application
+window.addEventListener('DOMContentLoaded', () => {
+    try {
+        console.log("karbon-metre initializing...");
+        // Web Karbon Ayak İzi & Eko-Skor - Standalone Client Application
 // The Green Web Foundation & Sustainable Web Design (SWD) Modeli (%100 Sunucusuz / Client-Side)
 
 const STORAGE_KEY = 'vibe_recent_carbon_scans';
@@ -33,7 +36,7 @@ async function runCarbonAnalysis(customUrl = null) {
     let hostingProvider = null;
 
     try {
-      const gwRes = await fetch(`https://api.thegreenwebfoundation.org/greencheck/${encodeURIComponent(hostname)}`, { signal: AbortSignal.timeout(4500) });
+      const gwRes = await fetch(`https://api.thegreenwebfoundation.org/greencheck/${encodeURIComponent(hostname)}`, { signal: AbortSignal.timeout(4500) 
       if (gwRes.ok) {
         const gwData = await gwRes.json();
         isGreen = !!gwData.green;
@@ -163,7 +166,7 @@ function renderResults(data) {
   generateBadgePreview(data);
 
   // Sayfayı yumuşakça kaydır
-  if (resBox) resBox.scrollIntoView({ behavior: 'smooth' });
+  if (resBox) resBox.scrollIntoView({ behavior: 'smooth' 
 }
 
 // 3. Yıllık Etki Simülasyonu
@@ -224,7 +227,7 @@ function copyBadgeSnippet() {
     showToast('✓ HTML rozet kodu panoya kopyalandı!');
   }).catch(() => {
     prompt('Rozet kodunuz:', htmlSnippet);
-  });
+  
 }
 
 // 5. Son Taramalar Geçmişi (Storage)
@@ -245,7 +248,7 @@ function saveToRecentScans(data) {
     grade: data.grade,
     isGreen: data.isGreen,
     date: new Date().toLocaleDateString('tr-TR')
-  });
+  
   if (list.length > 8) list = list.slice(0, 8);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
   renderRecentScans();
@@ -307,4 +310,12 @@ window.clearRecentScans = clearRecentScans;
 document.addEventListener('DOMContentLoaded', () => {
   renderRecentScans();
   runCarbonAnalysis('https://github.com');
+
+
+    } catch (error) {
+        console.error("karbon-metre Critical Error:", error);
+        document.body.innerHTML += `<div style="position:fixed;top:0;left:0;width:100%;background:red;color:white;text-align:center;z-index:9999;font-family:sans-serif;padding:10px;">
+            Critical JS Error in karbon-metre: ${error.message}
+        </div>`;
+    }
 });
