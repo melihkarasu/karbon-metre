@@ -11,31 +11,276 @@
   <link rel="stylesheet" href="css/style.css">
   
   <style>
-    :root { --mistral-ink: #1c1917; --mistral-slate: #78716c; --mistral-stone: #a8a29e; --mistral-hairline: #e7e5e4; --mistral-cream: #f5f5f4; --mistral-beige-deep: #d6d3d1; }
+    :root {
+      --mistral-ink: #1c1917;
+      --mistral-slate: #78716c;
+      --mistral-stone: #a8a29e;
+      --mistral-hairline: #e7e5e4;
+      --mistral-cream: #f5f5f4;
+      --mistral-beige-deep: #d6d3d1;
+      --mistral-orange: #fa520f;
+      --mistral-orange-deep: #e04400;
+      --mistral-canvas: #0f172a;
+    }
     body { font-family: 'Inter', sans-serif; background-color: #fafaf9; color: var(--mistral-ink); }
-    h1, h2, .font-editorial { font-family: 'Newsreader', serif; }
+    h1, h2, h3, .font-editorial { font-family: 'Newsreader', serif; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
     .text-mistral-ink { color: var(--mistral-ink); }
     .text-mistral-slate { color: var(--mistral-slate); }
     .text-mistral-stone { color: var(--mistral-stone); }
+    .text-mistral-orange { color: var(--mistral-orange); }
     .bg-mistral-cream { background-color: var(--mistral-cream); }
+    .bg-mistral-canvas { background-color: var(--mistral-canvas); }
     .border-mistral-hairline { border-color: var(--mistral-hairline); }
-    .bg-mistral-canvas { background-color: #0f172a; }
+    .border-mistral-beige-deep { border-color: var(--mistral-beige-deep); }
   </style>
 </head>
 <body class="p-4 md:p-8">
   <div class="max-w-6xl mx-auto">
-    <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div>
-        <div class="flex items-center gap-3">
-          <a href="https://github.com/melihkarasu" target="_blank" class="text-mistral-slate hover:text-teal-500 transition text-sm flex items-center gap-1">&larr; GitHub Profiline Dön</a>
-          <span class="text-mistral-stone">|</span>
-          <span class="px-2.5 py-0.5 rounded-full bg-teal-500/20 text-teal-600 text-xs font-semibold">Open Source Edition</span>
+<div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/melihkarasu" target="_blank" class="text-mistral-slate hover:text-white transition text-sm flex items-center gap-1">
+              &larr; GitHub Profiline Dön
+            </a>
+            <span class="text-mistral-stone">|</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-lime-500/20 text-lime-400 text-xs font-semibold">Mikro Uygulama #5</span>
+          </div>
+          <h1 class="text-3xl font-extrabold tracking-tight mt-1 text-mistral-ink flex items-center gap-2">
+            <span>🌱</span> Web Karbon Ayak İzi & Eko-Skor
+          </h1>
+          <p class="text-mistral-slate text-sm mt-0.5">
+            The Green Web Foundation & SWD modeli ile sayfa başına CO2 salımı, yeşil hosting analizi ve gömülebilir rozetler.
+          </p>
         </div>
-        <h1 class="text-3xl sm:text-4xl font-normal font-editorial tracking-tight mt-1.5 text-mistral-ink flex items-center gap-2"><span>🌱</span> Web Karbon Ayak İzi</h1>
+
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-mistral-hairline text-xs text-mistral-slate">
+          <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
+          <span>Green Web Foundation Standartları</span>
+        </div>
       </div>
-    </div>
-    
+
+      <!-- 1. URL ANALİZ GİRİŞ PANELİ -->
+      <div class="p-6 rounded-3xl bg-white border border-mistral-hairline shadow-xl mb-8 space-y-4">
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-mistral-slate mb-1.5">
+            Analiz Edilecek Web Sitesi URL'si
+          </label>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-1">
+              <input type="url" id="input-site-url" value="https://github.com" placeholder="https://example.com" onkeyup="if(event.key==='Enter') runCarbonAnalysis()" class="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-mistral-hairline text-sm text-mistral-ink placeholder-slate-500 focus:border-lime-400 focus:outline-none font-mono">
+              <span class="absolute left-3.5 top-3.5 text-mistral-stone text-base">🌐</span>
+            </div>
+            <button onclick="runCarbonAnalysis()" id="btn-analyze" class="px-7 py-3 rounded-xl bg-white from-lime-500 to-emerald-600 hover:from-lime-400 hover:to-emerald-500 text-slate-950 font-black text-sm transition shadow-lg shadow-lime-500/20 shrink-0 flex items-center justify-center gap-2">
+              <span>🍃</span> Ayak İzini Ölç
+            </button>
+          </div>
+        </div>
+
+        <!-- Hızlı Popüler Siteler -->
+        <div class="flex flex-wrap items-center gap-2 text-xs pt-1">
+          <span class="text-mistral-stone text-[11px]">Hızlı Örnekler:</span>
+          <button onclick="quickAnalyze('https://github.com')" class="px-2.5 py-1 rounded-lg bg-white hover:bg-mistral-cream border border-mistral-hairline text-mistral-slate transition">GitHub</button>
+          <button onclick="quickAnalyze('https://google.com')" class="px-2.5 py-1 rounded-lg bg-white hover:bg-mistral-cream border border-mistral-hairline text-mistral-slate transition">Google</button>
+          <button onclick="quickAnalyze('https://wikipedia.org')" class="px-2.5 py-1 rounded-lg bg-white hover:bg-mistral-cream border border-mistral-hairline text-mistral-slate transition">Wikipedia</button>
+          <button onclick="quickAnalyze('https://apple.com')" class="px-2.5 py-1 rounded-lg bg-white hover:bg-mistral-cream border border-mistral-hairline text-mistral-slate transition">Apple</button>
+          <button onclick="quickAnalyze('https://www.turkiye.gov.tr')" class="px-2.5 py-1 rounded-lg bg-white hover:bg-mistral-cream border border-mistral-hairline text-mistral-slate transition">e-Devlet</button>
+        </div>
+      </div>
+
+      <div id="loading-spinner" class="hidden py-16 text-center text-mistral-slate text-sm flex flex-col items-center gap-3">
+        <div class="w-8 h-8 rounded-full border-2 border-lime-500 border-t-transparent animate-spin"></div>
+        <span id="loading-text">Web sitesi taranıyor ve The Green Web Foundation verileri alınıyor...</span>
+      </div>
+
+      <!-- 2. ANALİZ SONUÇLARI KARTI (CANLI ANALİZ ÇIKTISI) -->
+      <div id="analysis-results" class="hidden space-y-8">
+        
+        <!-- Üst Özet Kartı -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-mistral-hairline shadow-2xl">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Sol: Eko-Harf Notu Rozeti -->
+            <div class="lg:col-span-4 flex flex-col items-center justify-center text-center p-6 rounded-2xl bg-white border border-mistral-hairline">
+              <span class="text-xs uppercase font-bold text-mistral-slate tracking-wider mb-2">Eko-Skor Derecesi</span>
+              <div id="res-grade-badge" class="w-24 h-24 rounded-full border-4 flex items-center justify-center font-black text-4xl shadow-inner mb-3">
+                A
+              </div>
+              <span id="res-cleaner-pct" class="text-xs font-bold text-emerald-400">
+                Web'in %82'sinden daha temiz
+              </span>
+            </div>
+
+            <!-- Orta/Sağ: Metrikler ve CO2 Değeri -->
+            <div class="lg:col-span-8 space-y-5">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-mistral-hairline pb-3">
+                <div>
+                  <h3 id="res-site-url" class="text-xl font-black text-mistral-ink font-mono truncate max-w-md">github.com</h3>
+                  <span id="res-timestamp" class="text-xs text-mistral-stone font-mono">Bugün analiz edildi</span>
+                </div>
+                <!-- Yeşil Hosting Durumu -->
+                <div id="res-green-host-badge" class="px-3 py-1.5 rounded-xl border flex items-center gap-2 text-xs font-bold shrink-0">
+                  <!-- JS ile doldurulur -->
+                </div>
+              </div>
+
+              <!-- Ana Karbon Göstergesi -->
+              <div>
+                <span class="text-xs text-mistral-slate uppercase font-semibold">Sayfa Yükleme Başına Karbon Emisyonu</span>
+                <div class="flex items-baseline gap-2 mt-1">
+                  <span id="res-co2-grams" class="text-4xl sm:text-5xl font-black text-lime-400 font-mono">0.24</span>
+                  <span class="text-base text-mistral-slate font-semibold">gram CO2e</span>
+                </div>
+              </div>
+
+              <!-- Teknik Metrikler Çubuğu -->
+              <div class="grid grid-cols-3 gap-3 pt-2">
+                <div class="p-3 rounded-xl bg-white border border-mistral-hairline text-center">
+                  <span class="text-[10px] text-mistral-slate uppercase">Sayfa Boyutu</span>
+                  <div id="res-page-size" class="text-sm font-bold text-mistral-ink font-mono mt-0.5">562 KB</div>
+                </div>
+                <div class="p-3 rounded-xl bg-white border border-mistral-hairline text-center">
+                  <span class="text-[10px] text-mistral-slate uppercase">Yanıt Süresi (TTFB)</span>
+                  <div id="res-ttfb" class="text-sm font-bold text-mistral-ink font-mono mt-0.5">142 ms</div>
+                </div>
+                <div class="p-3 rounded-xl bg-white border border-mistral-hairline text-center">
+                  <span class="text-[10px] text-mistral-slate uppercase">Sıkıştırma</span>
+                  <div id="res-compression" class="text-sm font-bold text-emerald-400 font-mono mt-0.5">Aktif (gzip)</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3. YILLIK ÇEVRESEL ETKİ SİMÜLATÖRÜ -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-mistral-hairline shadow-xl space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-base font-bold text-mistral-ink flex items-center gap-2">
+                <span>🌍</span> Yıllık Çevresel Etki Simülasyonu
+              </h3>
+              <p class="text-mistral-slate text-xs mt-0.5">
+                Bu web sitesi yılda doğaya ne kadar yük getiriyor? Aylık ziyaretçi trafiğini ayarlayarak keşfedin:
+              </p>
+            </div>
+            <div class="flex items-center gap-2 bg-white border border-mistral-hairline px-3 py-1.5 rounded-xl shrink-0">
+              <span class="text-xs text-mistral-slate">Trafik:</span>
+              <span id="slider-visitors-label" class="text-xs font-black text-lime-400 font-mono">10.000 / ay</span>
+            </div>
+          </div>
+
+          <!-- Ziyaretçi Slider'ı -->
+          <div class="space-y-1">
+            <input type="range" id="input-visitors-slider" min="1000" max="100000" step="1000" value="10000" oninput="updateSimulatedImpact()" class="w-full accent-lime-400 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-mistral-stone font-mono">
+              <span>1.000 Ziyaretçi</span>
+              <span>25.000</span>
+              <span>50.000</span>
+              <span>75.000</span>
+              <span>100.000 Ziyaretçi</span>
+            </div>
+          </div>
+
+          <!-- Eşdeğerlik Kartları (Equivalents) -->
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 pt-2">
+            <div class="p-4 rounded-2xl bg-white border border-mistral-hairline text-center flex flex-col justify-between">
+              <span class="text-3xl mb-2">☁️</span>
+              <span class="text-[10px] text-mistral-slate uppercase font-semibold">Yıllık Karbon Emisyonu</span>
+              <div id="sim-annual-co2" class="text-xl font-black text-lime-400 font-mono mt-1">28.8 kg</div>
+              <span class="text-[10px] text-mistral-stone mt-1">Karbondioksit eşdeğeri</span>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white border border-mistral-hairline text-center flex flex-col justify-between">
+              <span class="text-3xl mb-2">🌲</span>
+              <span class="text-[10px] text-mistral-slate uppercase font-semibold">Gereken Ağaç Sayısı</span>
+              <div id="sim-trees" class="text-xl font-black text-emerald-400 font-mono mt-1">2 Ağaç</div>
+              <span class="text-[10px] text-mistral-stone mt-1">Yıllık CO2 emilimi için</span>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white border border-mistral-hairline text-center flex flex-col justify-between">
+              <span class="text-3xl mb-2">🚗</span>
+              <span class="text-[10px] text-mistral-slate uppercase font-semibold">Elektrikli Araç Sürüşü</span>
+              <div id="sim-ev-km" class="text-xl font-black text-blue-400 font-mono mt-1">160 km</div>
+              <span class="text-[10px] text-mistral-stone mt-1">Tüketilen elektrik karşılığı</span>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white border border-mistral-hairline text-center flex flex-col justify-between">
+              <span class="text-3xl mb-2">📱</span>
+              <span class="text-[10px] text-mistral-slate uppercase font-semibold">Telefon Şarjı</span>
+              <div id="sim-phones" class="text-xl font-black text-amber-400 font-mono mt-1">3.500 Kez</div>
+              <span class="text-[10px] text-mistral-stone mt-1">Akıllı telefon tam şarjı</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. GÖMÜLEBİLİR YEŞİL WEB ROZETİ (EMBEDDABLE BADGE GENERATOR) -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-mistral-hairline shadow-xl space-y-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-base font-bold text-mistral-ink flex items-center gap-2">
+                <span>🏷️</span> Web Sitenize Gömülebilir Yeşil Web Rozeti
+              </h3>
+              <p class="text-mistral-slate text-xs mt-0.5">
+                Kendi web sitenizin footer veya hakkımızda alanına ekleyebileceğiniz dinamik eko-rozet:
+              </p>
+            </div>
+            <button onclick="copyBadgeSnippet()" class="px-4 py-2 rounded-xl text-mistral-ink font-boldbg-mistral-cream-light hover:bg-mistral-cream-deeper text-mistral-ink font-bold font-semibold text-xs transition flex items-center gap-1.5 shadow">
+              <span>📋</span> Kodu Kopyala
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <!-- Canlı Rozet Önizlemesi -->
+            <div class="p-6 rounded-2xl bg-white border border-mistral-hairline flex flex-col items-center justify-center space-y-3">
+              <span class="text-xs text-mistral-stone font-mono">Canlı Rozet Önizlemesi</span>
+              <div id="badge-preview-container" class="transition-transform hover:scale-105 cursor-pointer">
+                <!-- SVG Rozet Buraya Gelecek -->
+              </div>
+            </div>
+
+            <!-- Gömme Kodu (HTML & Markdown) -->
+            <div class="space-y-3">
+              <div>
+                <label class="block text-[11px] text-mistral-slate uppercase font-mono mb-1">HTML Gömme Kodu (Siteler için):</label>
+                <textarea id="badge-snippet-html" rows="2" readonly class="w-full p-2.5 rounded-xl bg-mistral-canvas border border-mistral-hairline text-xs font-mono text-lime-400 focus:outline-none"></textarea>
+              </div>
+              <div>
+                <label class="block text-[11px] text-mistral-slate uppercase font-mono mb-1">Markdown Kodu (GitHub README için):</label>
+                <textarea id="badge-snippet-md" rows="2" readonly class="w-full p-2.5 rounded-xl bg-mistral-canvas border border-mistral-hairline text-xs font-mono text-mistral-slate focus:outline-none"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 5. SON YAPILAN ANALİZLER GEÇMİŞİ (RECENT SCANS) -->
+      <div class="mt-14 pt-8 border-t border-mistral-hairline space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-bold text-mistral-ink flex items-center gap-2">
+              <span>📚</span> Son Taranan Web Siteleri
+            </h3>
+            <p class="text-mistral-slate text-xs">Daha önce analiz ettiğiniz sitelerin eko-skor karnesi.</p>
+          </div>
+          <button onclick="clearRecentScans()" class="text-xs text-rose-400 hover:underline">Geçmişi Temizle</button>
+        </div>
+
+        <div id="recent-scans-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <!-- JS ile doldurulur -->
+        </div>
+        <div id="recent-scans-empty" class="p-8 text-center rounded-2xl bg-white border border-mistral-hairline text-mistral-stone text-xs">
+          Henüz analiz edilmiş bir site geçmişi bulunmuyor.
+        </div>
+      </div>
+
+      <!-- Toast Bildirimi -->
+      <div id="carbon-toast" class="hidden fixed bottom-6 right-6 py-2.5 px-4 rounded-xl bg-lime-500 text-slate-950 font-black text-xs shadow-2xl transition z-50"></div>
+
+      <!-- İstemci Mantığı -->
   </div>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
