@@ -38,7 +38,23 @@ var STORAGE_KEY = '***';
           showLoading(true);
 
           try {
-            const res = { json: async () => ({ success: true, data: { co2: 0.25, ecoScore: "A", details: { energy: "0.12kg", hosting: "0.08kg", transfer: "0.05kg" } } }) };
+            const res = { 
+    json: async () => ({ 
+        success: true, 
+        data: { 
+            timestamp: new Date().toISOString(),
+            grade: 'A+', 
+            cleanerThan: 82, 
+            co2Grams: 0.245, 
+            cleanHost: 'github.com',
+            details: { 
+                energy: '0.12kg', 
+                hosting: '0.08kg', 
+                transfer: '0.05kg' 
+            } 
+        } 
+    }) 
+}
             const data = await res.json();
 
             if (!data.success) {
